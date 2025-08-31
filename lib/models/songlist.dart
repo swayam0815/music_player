@@ -1,9 +1,15 @@
 // Example usage in a widget
 import 'package:flutter/material.dart';
+import 'package:music_player/colors/color_extension.dart';
+import 'package:music_player/models/playlist_provider.dart';
+import 'package:music_player/models/song.dart';
+import 'package:music_player/pages/SongPage.dart';
 import 'package:on_audio_query/on_audio_query.dart';
+import 'package:provider/provider.dart';
 
 class SongListPage extends StatefulWidget {
   @override
+  // ignore: library_private_types_in_public_api
   _SongListPageState createState() => _SongListPageState();
 }
 
@@ -12,12 +18,21 @@ class _SongListPageState extends State<SongListPage> {
   List<SongModel> _songs = [];
   bool _loading = true;
   String? _error;
+  late final dynamic playlistProvider;
+
 
   @override
   void initState() {
     super.initState();
     fetchSongs();
+    playlistProvider = Provider.of<PlaylistProvider>(context, listen: false);
   }
+
+  void goToSong(int songIndex){
+    playlistProvider.currentSongIndex = songIndex;
+    Navigator.push(context, MaterialPageRoute(builder: (context) => SongPage(),));
+  }
+
 
   Future<void> fetchSongs() async {
     try {
@@ -60,54 +75,35 @@ class _SongListPageState extends State<SongListPage> {
               itemCount: _songs.length,
 
               itemBuilder: (context, index) {
+                final SongModel song = _songs[index];
+
                 return Container(
-                  margin: EdgeInsets.all(5),
                   decoration: BoxDecoration(
-                    border: Border.all(color: Theme.of(context).colorScheme.secondary),
+                    color: darkGray,
                     borderRadius: BorderRadius.all(Radius.circular(10)),
-                    color: Theme.of(context).colorScheme.secondary,
-                  ), 
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(25))
-                        ),
-                        margin: EdgeInsets.only(right: 15),
-                        child: QueryArtworkWidget(
-                          controller: _audioQuery,
-                          id: _songs[index].id,
-                          type: ArtworkType.AUDIO,
-                          artworkBorder: BorderRadius.all(Radius.zero),
-                        ),
-                      ),
-                      Flexible(
-                        
-                        child: Text(
-                          _songs[index].title,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                    ],
+                  ),
+                  child: ListTile(
+                    title: Text(
+                      song.title,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                    ),
+                    subtitle: Text(
+                      song.artist == "<unknown>" ? "Artist" : song.artist!,
+                    ),
+                    leading: QueryArtworkWidget(
+                      controller: _audioQuery,
+                      id: _songs[index].id,
+                      type: ArtworkType.AUDIO,
+                      artworkBorder: BorderRadius.all(Radius.zero),
+                    ),
+                    onTap: () => goToSong(index),
                   ),
                 );
               },
             ),
     );
   }
+
+  List<SongModel> get songs => _songs;
 }
-
-
-// ListTile(
-//                   title: Text(_songs[index].title),
-            
-//                   subtitle: Text(_songs[index].artist ?? "Unknown Artist"),
-//                   leading: QueryArtworkWidget(
-//                     controller: _audioQuery,
-//                     id: _songs[index].id,
-//                     type: ArtworkType.AUDIO,
-//                     artworkBorder: BorderRadius.all(Radius.zero),
-//                   ),
-                  
-//                 );

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:music_player/theme/theme_provider.dart';
 import 'package:provider/provider.dart';
@@ -55,19 +54,6 @@ class SettingsPage extends StatelessWidget {
                     Theme.of(context).colorScheme.secondary,
                   ),
                 ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Scan for Audio files",
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.inversePrimary,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                
               ],
             ),
           ],
