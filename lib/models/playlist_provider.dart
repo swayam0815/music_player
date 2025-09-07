@@ -3,12 +3,13 @@ import 'package:music_player/models/song.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 class PlaylistProvider extends ChangeNotifier {
-  int? _currentSongIndex = 0;
+  int _currentSongIndex = 0;
   final OnAudioQuery _audioQuery = OnAudioQuery();
+  // ignore: prefer_final_fields
   List<Song> _songs = [];
 
   Future<void> fetchSongs() async {
-    try {
+     {
       bool permissionStatus = await _audioQuery.permissionsStatus();
       if (!permissionStatus) {
         permissionStatus = await _audioQuery.permissionsRequest();
@@ -19,6 +20,7 @@ class PlaylistProvider extends ChangeNotifier {
       }
 
       List<SongModel> songsFetched = await _audioQuery.querySongs();
+      _songs.clear();
       for (SongModel s in songsFetched) {
         _songs.add(
           Song(
@@ -32,7 +34,9 @@ class PlaylistProvider extends ChangeNotifier {
           ),
         );
       }
-    } catch (e) {}
+
+      notifyListeners();
+    } 
   }
 
   void initState() {
@@ -44,10 +48,13 @@ class PlaylistProvider extends ChangeNotifier {
   }
 
   // G E T T E R S
-  int? get currentSongIndex => _currentSongIndex;
+  int get currentSongIndex => _currentSongIndex;
   List<Song> get songs => _songs;
 
-  set currentSongIndex(int? newIndex) {
+  Song get currSong => _songs[currentSongIndex];
+
+  // setters
+  set currentSongIndex(int newIndex) {
     _currentSongIndex = newIndex;
     notifyListeners();
   }

@@ -16,7 +16,7 @@ class MyDrawer extends StatelessWidget {
               child: Icon(
                 Icons.music_note_sharp,
                 size: 50,
-                color: Theme.of(context).colorScheme.primary,
+                color: Theme.of(context).colorScheme.inversePrimary,
               ),
             ),
           ),
@@ -26,12 +26,12 @@ class MyDrawer extends StatelessWidget {
               title: Text(
                 "H O M E",
                 style: TextStyle(
-                  color: Theme.of(context).colorScheme.primary,
+                  color: Theme.of(context).colorScheme.inversePrimary,
                 ),
               ),
               leading: Icon(
                 Icons.home_filled,
-                color: Theme.of(context).colorScheme.primary,
+                color: Theme.of(context).colorScheme.inversePrimary,
               ),
               onTap: () => Navigator.pop(context),
             ),
@@ -43,12 +43,12 @@ class MyDrawer extends StatelessWidget {
               title: Text(
                 "S E T T I N G S",
                 style: TextStyle(
-                  color: Theme.of(context).colorScheme.primary,
+                  color: Theme.of(context).colorScheme.inversePrimary,
                 ),
               ),
               leading: Icon(
                 Icons.settings,
-                color: Theme.of(context).colorScheme.primary,
+                color: Theme.of(context).colorScheme.inversePrimary,
               ),
               onTap: () {
                 Navigator.pop(context);

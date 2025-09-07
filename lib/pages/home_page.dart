@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:music_player/colors/color_extension.dart';
 import 'package:music_player/components/my_drawer.dart';
 import 'package:music_player/models/playlist_provider.dart';
 import 'package:music_player/models/song.dart';
-import 'package:music_player/pages/SongPage.dart';
+import 'package:music_player/pages/songPage.dart';
+import 'package:music_player/theme/theme_provider.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
@@ -14,20 +14,20 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   late final dynamic playlistProvider;
   @override
-  void initState(){
+  void initState() {
     super.initState();
     playlistProvider = Provider.of<PlaylistProvider>(context, listen: false);
-
   }
 
-  void goToSong(int i){
+  void goToSong(int i) {
     playlistProvider.currentSongIndex = i;
-    Navigator.push(context, MaterialPageRoute(builder: (context) => SongPage()));
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => songPage()),
+    );
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -38,10 +38,10 @@ class _HomePageState extends State<HomePage> {
 
         title: Text(
           "Music Player",
-          style: TextStyle(color: Theme.of(context).colorScheme.primary),
+          style: TextStyle(color: Theme.of(context).colorScheme.inversePrimary),
         ),
         centerTitle: true,
-        iconTheme: IconThemeData(color: Theme.of(context).colorScheme.primary),
+        iconTheme: IconThemeData(color: Theme.of(context).colorScheme.inversePrimary),
       ),
       drawer: MyDrawer(),
       body: Consumer<PlaylistProvider>(
@@ -54,25 +54,77 @@ class _HomePageState extends State<HomePage> {
 
               return Column(
                 children: [
-                  Container(
-                      decoration: BoxDecoration(
-                        color: darkGray,
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                      ),
-                      child: ListTile(
-                        title: Text(
-                          song.model.title,
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 1,
+                  SizedBox(height: 10),
+                  Column(
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(
+                          top: 10,
+                          bottom: 10,
+                          left: 20,
+                          right: 20,
                         ),
-                        subtitle: Text(
-                          song.model.artist == "<unknown>" ? "Artist" : song.model.artist!,
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).colorScheme.secondary,
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          boxShadow:
+                              Provider.of<ThemeProvider>(
+                                context,
+                                listen: false,
+                              ).isDarkMode
+                              ? [
+                                  BoxShadow(
+                                    color:  Colors.grey.shade800,
+                                    blurRadius: 15,
+                                    offset: const Offset(4, 4),
+                                  ),
+                                  BoxShadow(
+                                    color: Colors.grey.shade900,
+                                    blurRadius: 20,
+                                    offset: const Offset(-4, -4),
+                                  ),
+                                ]
+                              : [
+                                  BoxShadow(
+                                    color: const Color.fromARGB(
+                                      255,
+                                      211,
+                                      211,
+                                      211,
+                                    ),
+                                    blurRadius: 15,
+                                    offset: const Offset(4, 4),
+                                  ),
+                                  BoxShadow(
+                                    color: Colors.grey.shade200,
+                                    blurRadius: 20,
+                                    offset: const Offset(-4, -4),
+                                  ),
+                                ],
                         ),
-                        leading: song.cover,
-                       onTap: () => goToSong(index),
+                        child: ListTile(
+                          title: Text(
+                            song.model.title,
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
+                            style: TextStyle(
+                              color: Theme.of(context).colorScheme.inversePrimary,
+                            ),
+                          ),
+                          subtitle: Text(
+                            song.model.artist == "<unknown>"
+                                ? "Artist"
+                                : song.model.artist!,
+                            style: TextStyle(
+                              color: Theme.of(context).colorScheme.inversePrimary,
+                            ),
+                          ),
+                          leading: song.cover,
+                          onTap: () => goToSong(index),
+                        ),
                       ),
-                    ),
-                  SizedBox(height: 10,)
+                    ],
+                  ),
                 ],
               );
             },

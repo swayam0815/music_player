@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:music_player/colors/color_extension.dart';
 
 ThemeData darkMode = ThemeData(
   colorScheme: ColorScheme.dark(
-    surface: bg,
-    primary: focusStart,
-    secondary: focusStart,
-    inversePrimary: Colors.white,
+    surface: const Color(0xff181B2C),
+    primary: const Color.fromARGB(255, 237, 208, 112),
+    secondary: const Color.fromARGB(255, 119, 104, 53),
+    inversePrimary: Colors.grey.shade100,
   ),
 );

@@ -10,13 +10,13 @@ class SettingsPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.primary,
+        backgroundColor: Theme.of(context).colorScheme.surface,
         title: Text(
           "Settings",
-          style: TextStyle(color: Theme.of(context).colorScheme.surface),
+          style: TextStyle(color: Theme.of(context).colorScheme.inversePrimary),
         ),
         centerTitle: true,
-        iconTheme: IconThemeData(color: Theme.of(context).colorScheme.surface),
+        iconTheme: IconThemeData(color: Theme.of(context).colorScheme.inversePrimary),
       ),
 
       body: Container(
@@ -36,7 +36,7 @@ class SettingsPage extends StatelessWidget {
                   "Dark Mode",
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.inversePrimary,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
                 Switch(
@@ -48,8 +48,8 @@ class SettingsPage extends StatelessWidget {
                     context,
                     listen: false,
                   ).toggleTheme(),
-                  activeThumbColor: Theme.of(context).colorScheme.primary,
-                  inactiveThumbColor: Theme.of(context).colorScheme.primary,
+                  activeThumbColor: Theme.of(context).colorScheme.inversePrimary,
+                  inactiveThumbColor: Theme.of(context).colorScheme.inversePrimary,
                   trackOutlineColor: WidgetStateProperty.all(
                     Theme.of(context).colorScheme.secondary,
                   ),
