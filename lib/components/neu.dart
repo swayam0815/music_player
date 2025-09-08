@@ -29,12 +29,12 @@ class NeuBox extends StatelessWidget {
               ]
             : [
                 BoxShadow(
-                  color: const Color.fromARGB(255, 211, 211, 211),
+                  color: Colors.grey.shade500,
                   blurRadius: 15,
                   offset: const Offset(4, 4),
                 ),
                 BoxShadow(
-                  color: Colors.grey.shade200,
+                  color: Colors.white,
                   blurRadius: 20,
                   offset: const Offset(-4, -4),
                 ),
