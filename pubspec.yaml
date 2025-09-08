@@ -37,6 +37,14 @@ dependencies:
   provider: ^6.1.5+1
   on_audio_query: ^2.9.0
   just_audio: ^0.10.5
+  # flutter_launcher_icons: ^0.14.4
+
+# flutter_launcher_icons:
+#   android: true
+#   ios: true
+#   image_path: "assets/icons/icon.png"
+#   adaptive_icon_foreground: "assets/icons/foreground.png"
+#   adaptive_icon_background: "assets/icons/background.png"
 
 dev_dependencies:
   flutter_test:
