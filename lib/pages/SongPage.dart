@@ -78,7 +78,7 @@ class songPage extends StatelessWidget {
                                           overflow: TextOverflow.ellipsis,
                                           color: Theme.of(
                                             context,
-                                          ).colorScheme.inversePrimary,
+                                          ).colorScheme.primary,
                                         ),
                                         maxLines: 1,
                                       ),
@@ -90,7 +90,7 @@ class songPage extends StatelessWidget {
                                           overflow: TextOverflow.ellipsis,
                                           color: Theme.of(
                                             context,
-                                          ).colorScheme.inversePrimary,
+                                          ).colorScheme.primary,
                                         ),
                                         maxLines: 1,
                                         textAlign: TextAlign.start,
@@ -114,7 +114,7 @@ class songPage extends StatelessWidget {
                           inactiveTrackColor: Theme.of(
                             context,
                           ).colorScheme.secondary,
-                          activeTrackColor: Theme.of(context).colorScheme.primary,
+                          activeTrackColor: Theme.of(context).colorScheme.inversePrimary,
                           thumbColor: Theme.of(context).colorScheme.secondary,
                           overlayColor: Theme.of(
                             context,

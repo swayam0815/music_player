@@ -38,11 +38,11 @@ class _HomePageState extends State<HomePage> {
 
         title: Text(
           "Music Player",
-          style: TextStyle(color: Theme.of(context).colorScheme.inversePrimary),
+          style: TextStyle(color: Theme.of(context).colorScheme.primary),
         ),
         centerTitle: true,
         iconTheme: IconThemeData(
-          color: Theme.of(context).colorScheme.inversePrimary,
+          color: Theme.of(context).colorScheme.primary,
         ),
       ),
       drawer: MyDrawer(),
@@ -77,12 +77,12 @@ class _HomePageState extends State<HomePage> {
                               ).isDarkMode
                               ? [
                                   BoxShadow(
-                                    color: Colors.grey.shade800,
+                                    color: Colors.black,
                                     blurRadius: 15,
                                     offset: const Offset(4, 4),
                                   ),
                                   BoxShadow(
-                                    color: Colors.grey.shade900,
+                                    color: Colors.grey.shade800,
                                     blurRadius: 20,
                                     offset: const Offset(-4, -4),
                                   ),
@@ -94,7 +94,7 @@ class _HomePageState extends State<HomePage> {
                                     offset: const Offset(4, 4),
                                   ),
                                   BoxShadow(
-                                    color: Colors.grey.shade400,
+                                    color: Colors.white,
                                     blurRadius: 20,
                                     offset: const Offset(-4, -4),
                                   ),
@@ -108,7 +108,7 @@ class _HomePageState extends State<HomePage> {
                             style: TextStyle(
                               color: Theme.of(
                                 context,
-                              ).colorScheme.inversePrimary,
+                              ).colorScheme.primary,
                             ),
                           ),
                           subtitle: Text(
@@ -118,7 +118,7 @@ class _HomePageState extends State<HomePage> {
                             style: TextStyle(
                               color: Theme.of(
                                 context,
-                              ).colorScheme.inversePrimary,
+                              ).colorScheme.primary,
                             ),
                           ),
                           leading: song.cover,
