@@ -41,7 +41,9 @@ class _HomePageState extends State<HomePage> {
           style: TextStyle(color: Theme.of(context).colorScheme.inversePrimary),
         ),
         centerTitle: true,
-        iconTheme: IconThemeData(color: Theme.of(context).colorScheme.inversePrimary),
+        iconTheme: IconThemeData(
+          color: Theme.of(context).colorScheme.inversePrimary,
+        ),
       ),
       drawer: MyDrawer(),
       body: Consumer<PlaylistProvider>(
@@ -57,10 +59,11 @@ class _HomePageState extends State<HomePage> {
                   SizedBox(height: 10),
                   Column(
                     children: [
+                      SizedBox(height: 10),
                       Container(
                         margin: EdgeInsets.only(
                           top: 10,
-                          bottom: 10,
+                          bottom: 15,
                           left: 20,
                           right: 20,
                         ),
@@ -74,7 +77,7 @@ class _HomePageState extends State<HomePage> {
                               ).isDarkMode
                               ? [
                                   BoxShadow(
-                                    color:  Colors.grey.shade800,
+                                    color: Colors.grey.shade800,
                                     blurRadius: 15,
                                     offset: const Offset(4, 4),
                                   ),
@@ -86,17 +89,12 @@ class _HomePageState extends State<HomePage> {
                                 ]
                               : [
                                   BoxShadow(
-                                    color: const Color.fromARGB(
-                                      255,
-                                      211,
-                                      211,
-                                      211,
-                                    ),
+                                    color: Colors.grey.shade500,
                                     blurRadius: 15,
                                     offset: const Offset(4, 4),
                                   ),
                                   BoxShadow(
-                                    color: Colors.grey.shade200,
+                                    color: Colors.grey.shade400,
                                     blurRadius: 20,
                                     offset: const Offset(-4, -4),
                                   ),
@@ -108,7 +106,9 @@ class _HomePageState extends State<HomePage> {
                             overflow: TextOverflow.ellipsis,
                             maxLines: 1,
                             style: TextStyle(
-                              color: Theme.of(context).colorScheme.inversePrimary,
+                              color: Theme.of(
+                                context,
+                              ).colorScheme.inversePrimary,
                             ),
                           ),
                           subtitle: Text(
@@ -116,7 +116,9 @@ class _HomePageState extends State<HomePage> {
                                 ? "Artist"
                                 : song.model.artist!,
                             style: TextStyle(
-                              color: Theme.of(context).colorScheme.inversePrimary,
+                              color: Theme.of(
+                                context,
+                              ).colorScheme.inversePrimary,
                             ),
                           ),
                           leading: song.cover,
